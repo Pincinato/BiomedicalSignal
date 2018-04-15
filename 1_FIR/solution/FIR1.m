@@ -56,6 +56,8 @@ plot(v_time,y);
 %filter of order 3728
 figure (3)
 load ('Num_filter_pb3.mat')
+Num_filter(1)=0;
+Num_filter(length(Num_filter))=0;
 den=1;
 subplot(3,2,1)
 plot(v_time,complete_signal);
@@ -66,6 +68,7 @@ subplot(3,2,3)
 plot(1:length(wanted_signal),test_signal);
 subplot(3,2,5)
 plot(1:length(wanted_signal),wanted_signal)
+title('wanted signal');
 subplot(3,2,4)
 plot(1:length(wanted_signal),filter(Num_filter,den,test_signal));
 subplot(3,2,6)
@@ -79,6 +82,8 @@ max_error_prob3=max(abs(errors_prob3))
 figure (4)
 den=1;
 load ('Num_filter_pb4.mat') 
+Num_filter_pb4(1)=0;
+Num_filter_pb4(length(Num_filter_pb4))=0;
 subplot(3,2,1)
 plot(v_time,complete_signal);
 subplot(3,2,2)
@@ -88,6 +93,7 @@ subplot(3,2,3)
 plot(1:length(wanted_signal),test_signal);
 subplot(3,2,5)
 plot(1:length(wanted_signal),wanted_signal)
+title('wanted signal');
 subplot(3,2,4)
 plot(1:length(wanted_signal),filter(Num_filter_pb4,den,test_signal));
 subplot(3,2,6)
@@ -139,6 +145,8 @@ if (print_debug==0)
     figure(5)
     den=1;
     load ('Num_filter_pb5.mat') 
+    Num_filter_pb5(1)=0;
+    Num_filter_pb5(length(Num_filter_pb5))=0;
     subplot(3,2,1);
     delay=(length(Num_filter_pb5)/2)*decimation_factor; % delay must be multiplied by the decimator factor in oder to adpat to the interpolation.
     test_signal_delayed_pb5=circshift(test_signal,delay); %inserting delay
@@ -184,7 +192,7 @@ end
 % As expected this filter of order 444 (444x8= 3552) has a maximum error in btw
 % the filter from pb 3 (order 3782) and the filter from prob 4 (order 2000).
 %% Prob 6
-clear_Ex1_2_3_4_5 = 1;
+clear_Ex1_2_3_4_5 = 0;
 if (clear_Ex1_2_3_4_5==1)
     clear all;
 end
